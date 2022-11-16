@@ -27,7 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ca.tetervak.dogdatalab.data.DogDataSource
+import ca.tetervak.dogdatalab.data.dogList
 import ca.tetervak.dogdatalab.model.Dog
 import ca.tetervak.dogdatalab.ui.theme.DogDataLabTheme
 
@@ -36,14 +36,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DogDataLabTheme {
-                DogDataLabApp()
+                DogDataLabApp(dogList = dogList)
             }
         }
     }
 }
 
 @Composable
-fun DogDataLabApp(dogList: List<Dog> = DogDataSource.getInstance().getAllDogs()) {
+fun DogDataLabApp(dogList: List<Dog>) {
     Scaffold(
         topBar = {
             DogDataTopAppBar()
@@ -189,7 +189,7 @@ fun DogHobby(@StringRes dogHobby: Int, modifier: Modifier = Modifier) {
 @Composable
 fun DogDataLabPreview() {
     DogDataLabTheme(darkTheme = false) {
-        DogDataLabApp()
+        DogDataLabApp(dogList)
     }
 }
 
@@ -200,6 +200,6 @@ fun DogDataLabPreview() {
 @Composable
 fun DogDataLabDarkThemePreview() {
     DogDataLabTheme(darkTheme = true) {
-        DogDataLabApp()
+        DogDataLabApp(dogList)
     }
 }
